@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 import Home from './pages/Home'
+import Shop from './pages/shop/Shop'
 import NotFound from './pages/NotFound'
 
 import './App.css'
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
