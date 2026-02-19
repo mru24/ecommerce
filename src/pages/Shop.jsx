@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 
+import ProductsGrid from '../components/ProductsGrid';
+
 const Shop = () => {
   const [products, setProducts] = useState([]);
 
@@ -19,8 +21,11 @@ const Shop = () => {
   }, [])
 
   return (
-    <div className="shop container mx-auto p-6">
-      shop
+    <div className="shop container mx-auto">
+      <h2>Products</h2>
+      { products.length>0 && (
+        <ProductsGrid products={products} />
+      )}
     </div>
   )
 }
