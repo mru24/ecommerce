@@ -1,4 +1,4 @@
-import axios from "axios";
+import {formatDate, formatTime} from './functions';
 
 
 const TabContent = ({ data, type, onDelete }) => {
@@ -24,8 +24,14 @@ const TabContent = ({ data, type, onDelete }) => {
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item.name}</td>
               <td className="p-3 text-sm text-gray-700">{item.description}</td>
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item.price}</td>
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item.createdAt}</td>
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item.updatedAt}</td>
+              <td className="p-3 text-sm text-gray-700">
+                <span className="whitespace-nowrap block">{formatDate(item.createdAt)}</span>
+                <span className="whitespace-nowrap block">{formatTime(item.createdAt)}</span>
+              </td>
+              <td className="p-3 text-sm text-gray-700">
+                <span className="whitespace-nowrap block">{formatDate(item.updatedAt)}</span>
+                <span className="whitespace-nowrap block">{formatTime(item.updatedAt)}</span>
+              </td>
               <td className="p-1 pr-0 text-right whitespace-nowrap">
                 <button className="btn primary mx-2">Edit</button>
                 <button
@@ -44,8 +50,9 @@ const TabContent = ({ data, type, onDelete }) => {
           <tr>
             <th className="p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Title</th>
             <th className="p-3 text-sm font-semibold tracking-wide text-left">Author</th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Created</th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Updated</th>
+            <th className="p-3 text-sm font-semibold tracking-wide text-left">Excerpt</th>
+            <th className="p-3 text-sm font-semibold tracking-wide text-left">Created</th>
+            <th className="p-3 text-sm font-semibold tracking-wide text-left">Updated</th>
             <th className="p-3"></th>
           </tr>
         </thead>
@@ -54,8 +61,15 @@ const TabContent = ({ data, type, onDelete }) => {
             <tr key={item.id} className={item.id % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
               <td className="p-3 text-sm text-gray-700">{item.title}</td>
               <td className="p-3 text-sm text-gray-700">{item.author}</td>
-              <td className="p-3 text-sm text-gray-700">{item.createdAt}</td>
-              <td className="p-3 text-sm text-gray-700">{item.updatedAt}</td>
+              <td className="p-3 text-sm text-gray-700">{item.excerpt}</td>
+              <td className="p-3 text-sm text-gray-700">
+                <span className="whitespace-nowrap block">{formatDate(item.createdAt)}</span>
+                <span className="whitespace-nowrap block">{formatTime(item.createdAt)}</span>
+              </td>
+              <td className="p-3 text-sm text-gray-700">
+                <span className="whitespace-nowrap block">{formatDate(item.updatedAt)}</span>
+                <span className="whitespace-nowrap block">{formatTime(item.updatedAt)}</span>
+              </td>
               <td className="p-1 pr-0 text-right whitespace-nowrap">
                 <button className="btn primary mx-2 inline-block">Edit</button>
                 <button

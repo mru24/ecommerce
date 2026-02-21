@@ -8,6 +8,7 @@ import Shop from './pages/Shop'
 import NotFound from './pages/NotFound'
 import Admin from './pages/Admin'
 import AddProduct from './pages/AddProduct'
+import AddPost from './pages/AddPost'
 
 import './App.css'
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/add-post" element={<AddPost />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

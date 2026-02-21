@@ -44,7 +44,7 @@ const Admin = () => {
             Add product
           </Link>)}
         {activeTab=="posts" && (
-          <Link to="add-post" className="btn primary min-w-[130px]">
+          <Link to="/add-post" className="btn primary min-w-[130px]">
             Add post
           </Link>)}
       </div>

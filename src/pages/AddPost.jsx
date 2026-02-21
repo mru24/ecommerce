@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Link } from 'react-router';
 import { useNavigate } from "react-router-dom";
 
-const AddProduct = () => {
+const AddPost = () => {
 
   const navigate = useNavigate();
 
@@ -10,20 +10,21 @@ const AddProduct = () => {
     ev.preventDefault();
 
     const formData = new FormData(ev.target);
-    const {name,description,price} = Object.fromEntries(formData.entries());
+    const {title,author,excerpt,content} = Object.fromEntries(formData.entries());
 
     let date = new Date();
 
-    if(!name || !price) {
+    if(!title || !author || !excerpt || !content) {
       alert("Please fill all the required form fields");
       return;
     }
     try {
-      await axios.post("http://localhost:3001/products", {
+      await axios.post("http://localhost:3001/posts", {
         id: crypto.randomUUID(),
-        name,
-        description,
-        price: Number(price),
+        title,
+        author,
+        excerpt,
+        content,
         createdAt: date.toISOString()
       })
     } catch(error) {
@@ -33,28 +34,28 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="add-product">
+    <div className="add-post">
       <div className="border bg-white p-8 mx-10 my-5 shadow-xl max-w-[600px] mx-auto">
-        <h1 className="">Add product</h1>
+        <h1 className="">Add post</h1>
         <form onSubmit={handleForm}>
           <div className="form-group">
-            <label htmlFor="name">Name *</label>
-            <input type="text" id="name" name="name" required />
+            <label htmlFor="title">Post title *</label>
+            <input type="text" id="title" name="title" required />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description</label>
-            <textarea name="description" id="description"></textarea>
+            <label htmlFor="author">Post author *</label>
+            <input type="text" id="author" name="author" required />
           </div>
           <div className="form-group">
-            <label htmlFor="price">Price *</label>
-            <input type="number" id="price" name="price" step="0.01" required />
+            <label htmlFor="excerpt">Post excerpt *</label>
+            <textarea name="excerpt" id="excerpt" required></textarea>
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="tax">Tax *</label>
-            <input type="number" id="tax" name="tax" required />
-          </div> */}
+          <div className="form-group">
+            <label htmlFor="content">Post *</label>
+            <textarea name="content" id="content" required></textarea>
+          </div>
           <div className="text-right mt-2">
-            <button type="submit" className='btn primary mr-2'>Add Product</button>
+            <button type="submit" className='btn primary mr-2'>Add Post</button>
             <Link to="/admin" className="btn danger">Cancel</Link>
           </div>
         </form>
@@ -63,4 +64,4 @@ const AddProduct = () => {
   );
 }
 
-export default AddProduct;
+export default AddPost;
