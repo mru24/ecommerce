@@ -22,9 +22,9 @@ const TabContent = ({ data, type, onDelete }) => {
           {data.map((item) => (
             <tr key={item.id} className={item.id % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
               <td className="p-3 text-sm text-gray-700">{item.imageFilename}</td>
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item.name}</td>
+              <td className="p-3 text-sm text-gray-700 whitespace-nowrap font-bold">{item.name}</td>
               <td className="p-3 text-sm text-gray-700">{item.description}</td>
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap">{item.price}</td>
+              <td className="p-3 text-sm text-gray-700 whitespace-nowrap font-bold">{item.price}</td>
               <td className="p-3 text-sm text-gray-700">
                 <span className="whitespace-nowrap block">{formatDate(item.createdAt)}</span>
                 <span className="whitespace-nowrap block">{formatTime(item.createdAt)}</span>

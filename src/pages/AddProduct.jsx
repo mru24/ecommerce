@@ -43,7 +43,7 @@ const AddProduct = () => {
           </div>
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <textarea name="description" id="description"></textarea>
+            <textarea name="description" id="description" />
           </div>
           <div className="form-group">
             <label htmlFor="price">Price *</label>

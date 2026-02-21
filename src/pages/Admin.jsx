@@ -40,7 +40,7 @@ const Admin = () => {
     <div className="admin">
       <div className="border bg-white p-8 mx-10 my-5 shadow-xl text-right">
         <Link to={`/${activeTab}/add`} className="btn primary min-w-[130px]">
-          Add product
+          Add {activeTab==='products'?'product':activeTab==='posts'&&'post'}
         </Link>
       </div>
       <div className="border bg-white p-8 mx-10 my-5 shadow-xl">

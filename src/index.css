@@ -5,6 +5,9 @@ h1 {
   font-weight: 600;
   margin: 5px 0 20px;
 }
+.btn {
+  cursor: pointer;
+}
 .btn.primary {
   display: inline-block;
   padding: 9px 18px 12px;

@@ -48,11 +48,11 @@ const AddPost = () => {
           </div>
           <div className="form-group">
             <label htmlFor="excerpt">Post excerpt *</label>
-            <textarea name="excerpt" id="excerpt" required></textarea>
+            <textarea name="excerpt" id="excerpt" required />
           </div>
           <div className="form-group">
             <label htmlFor="content">Post *</label>
-            <textarea name="content" id="content" required></textarea>
+            <textarea name="content" id="content" required />
           </div>
           <div className="text-right mt-2">
             <button type="submit" className='btn primary mr-2'>Add Post</button>

@@ -1,17 +1,25 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditProduct = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
+  const [product, setProduct] = useState([]);
 
-  const getProduct = () => {
-
-
+  const getProduct = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/products/${id}`);
+      console.log(response.data);
+      setProduct(response.data);
+    } catch(error) {
+      console.error(error);
+    }
   }
+  useEffect(()=>{
+    getProduct();
+  },[])
 
   const handleForm = async (ev) => {
     ev.preventDefault();
@@ -25,22 +33,17 @@ const EditProduct = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:3001/products", {
-        id: crypto.randomUUID(),
+      await axios.put(`http://localhost:3001/products/${id}`, {
         name,
         description,
         price: Number(price),
-        createdAt: date.toISOString()
+        updatedAt: date.toISOString()
       })
     } catch (error) {
       console.error(error);
     }
     navigate('/admin');
   };
-
-  useEffect(() => {
-
-  },)
 
   return (
     <div className="add-product">
@@ -49,22 +52,22 @@ const EditProduct = () => {
         <form onSubmit={handleForm}>
           <div className="form-group">
             <label htmlFor="name">Name *</label>
-            <input type="text" id="name" name="name" required />
+            <input type="text" id="name" name="name" defaultValue={product.name} required />
           </div>
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <textarea name="description" id="description"></textarea>
+            <textarea name="description" id="description" defaultValue={product.description} />
           </div>
           <div className="form-group">
             <label htmlFor="price">Price *</label>
-            <input type="number" id="price" name="price" step="0.01" required />
+            <input type="number" id="price" name="price" step="0.01" defaultValue={product.price} required />
           </div>
           {/* <div className="form-group">
             <label htmlFor="tax">Tax *</label>
             <input type="number" id="tax" name="tax" required />
           </div> */}
           <div className="text-right mt-2">
-            <button type="submit" className='btn primary mr-2'>Add Product</button>
+            <button type="submit" className='btn primary mr-2'>Save</button>
             <Link to="/admin" className="btn danger">Cancel</Link>
           </div>
         </form>
