@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import {formatDate, formatTime} from './functions';
 
 
@@ -33,7 +34,9 @@ const TabContent = ({ data, type, onDelete }) => {
                 <span className="whitespace-nowrap block">{formatTime(item.updatedAt)}</span>
               </td>
               <td className="p-1 pr-0 text-right whitespace-nowrap">
-                <button className="btn primary mx-2">Edit</button>
+                <Link to={`/products/edit/${item.id}`} className="btn primary mx-2">
+                  Edit
+                </Link>
                 <button
                   className="btn danger inline-block"
                   onClick={()=>onDelete(item.id,type)}>Delete</button>
@@ -71,7 +74,9 @@ const TabContent = ({ data, type, onDelete }) => {
                 <span className="whitespace-nowrap block">{formatTime(item.updatedAt)}</span>
               </td>
               <td className="p-1 pr-0 text-right whitespace-nowrap">
-                <button className="btn primary mx-2 inline-block">Edit</button>
+                <Link to={`/posts/edit/${item.id}`} className="btn primary mx-2">
+                  Edit
+                </Link>
                 <button
                   className="btn danger inline-block"
                   onClick={()=>onDelete(item.id,type)}>Delete</button>

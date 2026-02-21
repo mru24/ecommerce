@@ -4,15 +4,15 @@ import { Link } from 'react-router';
 
 import TabContent from "../components/TabContent";
 
-
 const Admin = () => {
+
   const [activeTab, setActiveTab] = useState("products");
   const [data, setData] = useState([]);
 
-  const deleteItem = async (id,api) => {
+  const deleteItem = async (id, api) => {
     try {
       await axios.delete(`http://localhost:3001/${api}/${id}`);
-    } catch(error) {
+    } catch (error) {
       console.error(error);
     }
     setData(prev => prev.filter(item => item.id !== id));
@@ -39,14 +39,9 @@ const Admin = () => {
   return (
     <div className="admin">
       <div className="border bg-white p-8 mx-10 my-5 shadow-xl text-right">
-        {activeTab=="products" && (
-          <Link to="/add-product" className="btn primary min-w-[130px]">
-            Add product
-          </Link>)}
-        {activeTab=="posts" && (
-          <Link to="/add-post" className="btn primary min-w-[130px]">
-            Add post
-          </Link>)}
+        <Link to={`/${activeTab}/add`} className="btn primary min-w-[130px]">
+          Add product
+        </Link>
       </div>
       <div className="border bg-white p-8 mx-10 my-5 shadow-xl">
         <div className="flex flex-wrap border-b-2 border-gray-400">
