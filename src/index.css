@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+h1 {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 5px 0 20px;
+}
+.btn.primary {
+  display: inline-block;
+  padding: 9px 18px 12px;
+  background-color: var(--color-blue-400);
+  color: var(--color-white);
+  text-align: center;
+}
+.btn.danger {
+  display: inline-block;
+  padding: 9px 18px 12px;
+  background-color: var(--color-red-600);
+  color: var(--color-white);
+  text-align: center;
+}
+form label {
+  display: block;
+}
+input[type="text"],
+input[type="number"],
+textarea {
+  border: 2px solid var(--color-blue-400);
+  padding: 2px 10px;
+  font-size: 17px;
+  color: var(--color-gray-700);
+  margin: 4px 0 10px;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border: 2px solid var(--color-lime-500);
+  }
+}
+textarea {
+  height: 150px;
+  resize: none;
+}
+
+table tr {
+  vertical-align: baseline;
+}

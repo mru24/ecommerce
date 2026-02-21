@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 fixed bottom-0 w-full">
+    <footer className="bg-gray-900">
       <div className="container mx-auto">
         <nav aria-label="Global" className="flex max-w-7xl items-center justify-between py-2">
           <div className="flex lg:flex-1">
