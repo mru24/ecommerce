@@ -3,19 +3,28 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router';
 
 import TabContent from "../components/TabContent";
+import Modal from "../components/Modal";
 
 const Admin = () => {
-
-  const [activeTab, setActiveTab] = useState("products");
+  const [activeTab, setActiveTab] = useState('products');
   const [data, setData] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState({id: null, api: null});
 
-  const deleteItem = async (id, api) => {
+  const confirmDelete = (id,api) => {
+    setIsOpen(true);
+    setItemToDelete({id,api});
+  }
+
+  const deleteItem = async () => {
     try {
-      await axios.delete(`http://localhost:3001/${api}/${id}`);
+      await axios.delete(`http://localhost:3001/${itemToDelete.api}/${itemToDelete.id}`);
     } catch (error) {
       console.error(error);
     }
-    setData(prev => prev.filter(item => item.id !== id));
+    setData(prev => prev.filter(item => item.id !== itemToDelete.id));
+    setIsOpen(false);
+    setItemToDelete({id: null,api: null});
   }
 
   useEffect(() => {
@@ -56,9 +65,15 @@ const Admin = () => {
         </div>
 
         <div>
-          <TabContent data={data} type={activeTab} onDelete={deleteItem} />
+          <TabContent data={data} type={activeTab} onDelete={confirmDelete} />
         </div>
       </div>
+
+      <Modal isOpen={isOpen}>
+        <button onClick={deleteItem} className="btn danger">Delete</button>
+        <button onClick={()=>setIsOpen(false)} className="btn primary">Cancel</button>
+      </Modal>
+
     </div>
   )
 }

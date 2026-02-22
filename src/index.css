@@ -43,7 +43,10 @@ textarea {
   height: 150px;
   resize: none;
 }
-
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
 table tr {
   vertical-align: baseline;
 }

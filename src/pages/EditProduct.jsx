@@ -11,7 +11,6 @@ const EditProduct = () => {
   const getProduct = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/products/${id}`);
-      console.log(response.data);
       setProduct(response.data);
     } catch(error) {
       console.error(error);
@@ -24,7 +23,7 @@ const EditProduct = () => {
   const handleForm = async (ev) => {
     ev.preventDefault();
     const formData = new FormData(ev.target);
-    const { name, description, price } = Object.fromEntries(formData.entries());
+    const { name, description, price, createdAt } = Object.fromEntries(formData.entries());
 
     let date = new Date();
 
@@ -37,6 +36,7 @@ const EditProduct = () => {
         name,
         description,
         price: Number(price),
+        createdAt,
         updatedAt: date.toISOString()
       })
     } catch (error) {
@@ -50,6 +50,7 @@ const EditProduct = () => {
       <div className="border bg-white p-8 mx-10 my-5 shadow-xl max-w-[600px] mx-auto">
         <h1 className="">Edit product</h1>
         <form onSubmit={handleForm}>
+          <input type="hidden" name="createdAt" defaultValue={product.createdAt} />
           <div className="form-group">
             <label htmlFor="name">Name *</label>
             <input type="text" id="name" name="name" defaultValue={product.name} required />
