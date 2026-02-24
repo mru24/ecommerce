@@ -46,6 +46,9 @@ textarea {
 .table-container {
   width: 100%;
   overflow-x: auto;
+  table {
+    min-width: 900px;
+  }
 }
 table tr {
   vertical-align: baseline;

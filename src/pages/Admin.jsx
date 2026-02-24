@@ -18,7 +18,7 @@ const Admin = () => {
 
   const deleteItem = async () => {
     try {
-      await axios.delete(`http://localhost:3001/${itemToDelete.api}/${itemToDelete.id}`);
+      await axios.delete(`/api/${itemToDelete.api}/${itemToDelete.id}`);
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +30,7 @@ const Admin = () => {
   useEffect(() => {
     const getTabContent = async (tab) => {
       try {
-        const response = await axios.get(`http://localhost:3001/${tab}`);
+        const response = await axios.get(`/api/${tab}`);
         setData(response.data);
       } catch (error) {
         console.error(error);

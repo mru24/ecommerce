@@ -10,26 +10,39 @@ const AddProduct = () => {
     ev.preventDefault();
 
     const formData = new FormData(ev.target);
-    const {name,description,price} = Object.fromEntries(formData.entries());
+    const { name,description,price,image } = Object.fromEntries(formData.entries());
 
     let date = new Date();
 
-    if(!name || !price) {
+    if( !name || !price || !description ) {
       alert("Please fill all the required form fields");
       return;
     }
+
     try {
-      await axios.post("http://localhost:3001/products", {
-        id: crypto.randomUUID(),
-        name,
-        description,
-        price: Number(price),
-        createdAt: date.toISOString()
+      const response = await fetch("/api/products", {
+        method: "POST",
+        body: {
+          name,
+          description,
+          price,
+          image
+        }
       })
+      const data = await response.json()
+      if(response.ok) {
+        navigate('/admin');
+      }
+      else if( response.status === 400) {
+        alert("Validation errors")
+      }
+      else {
+        alert("unable to create the product")
+      }
     } catch(error) {
       console.error(error);
     }
-    navigate('/admin');
+
   };
 
   return (
@@ -47,12 +60,12 @@ const AddProduct = () => {
           </div>
           <div className="form-group">
             <label htmlFor="price">Price *</label>
-            <input type="number" id="price" name="price" step="0.01" required />
+            <input type="number" id="price" name="price" step="0.01" className="max-w-[150px]" required />
           </div>
-          {/* <div className="form-group">
-            <label htmlFor="tax">Tax *</label>
-            <input type="number" id="tax" name="tax" required />
-          </div> */}
+          <div className="form-group">
+            <label htmlFor="image">Image</label>
+            <input type="file" id="image" name="image" />
+          </div>
           <div className="text-right mt-2">
             <button type="submit" className='btn primary mr-2'>Add Product</button>
             <Link to="/admin" className="btn danger">Cancel</Link>

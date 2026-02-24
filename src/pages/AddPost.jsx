@@ -19,7 +19,7 @@ const AddPost = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:3001/posts", {
+      await axios.post("/api/posts", {
         id: crypto.randomUUID(),
         title,
         author,

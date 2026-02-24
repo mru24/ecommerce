@@ -24,7 +24,7 @@ const EditPost = () => {
     ev.preventDefault();
     const formData = new FormData(ev.target);
 
-    const {title,author,excerpt,content,createdAt} = Object.fromEntries(formData.entries());
+    const { title,author,excerpt,content } = Object.fromEntries(formData.entries());
 
     let date = new Date();
 
@@ -33,12 +33,12 @@ const EditPost = () => {
       return;
     }
     try {
-      await axios.put(`http://localhost:3001/posts/${id}`, {
+      await axios.put(`/api/posts/${id}`, {
         title,
         author,
         excerpt,
         content,
-        createdAt,
+        createdAt: post.createdAt,
         updatedAt: date.toISOString()
       })
     } catch (error) {
@@ -52,7 +52,6 @@ const EditPost = () => {
       <div className="border bg-white p-8 mx-10 my-5 shadow-xl max-w-[600px] mx-auto">
         <h1 className="">Edit post</h1>
         <form onSubmit={handleForm}>
-          <input type="hidden" name="createdAt" defaultValue={post.createdAt} />
           <div className="form-group">
             <label htmlFor="title">Post title *</label>
             <input type="text" id="title" name="title" defaultValue={post.title} required />
